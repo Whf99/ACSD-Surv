@@ -1,0 +1,116 @@
+{
+  "data_root": "../data/NPC",
+  "split_root": "../data/NPC/splits",
+  "cache_dir": "../cache/NPC",
+  "output_root": "../outputs/NPC",
+  "seed": 20261106,
+  "time_unit": "months_inferred_from_source_year_months",
+  "time_origin": "treatment_initiation",
+  "event_definition": "recurrence-free survival",
+  "zero_time_policy": "exclude",
+  "ipcw_clip": 0.05,
+  "preprocess": {
+    "intensity_mode": "unit",
+    "shape": [
+      48,
+      48,
+      48
+    ],
+    "crop_mm": [
+      160,
+      160,
+      128
+    ],
+    "hu_clip": [
+      -200,
+      300
+    ],
+    "mesh_max_vertices": 128,
+    "reference_csv": null,
+    "need_geometry": true
+  },
+  "model": {
+    "image_embedding": 64,
+    "geometry_embedding": 16,
+    "sobolev_ell": 0.1,
+    "sobolev_power": 4,
+    "geometry": {
+      "scales": [
+        [
+          0.01,
+          0.03
+        ],
+        [
+          0.04,
+          0.1
+        ],
+        [
+          0.15,
+          0.4
+        ]
+      ],
+      "conductivity_min": 0.5,
+      "conductivity_max": 2.0,
+      "sigma": 0.03,
+      "kappa": 8.0,
+      "learn_operator": true,
+      "learn_scales": true,
+      "include_size": true,
+      "include_position": true,
+      "isotropic_cache_dir": null
+    }
+  },
+  "training": {
+    "device": "cpu",
+    "batch_size": 2,
+    "num_workers": 0,
+    "cpu_threads": 1,
+    "epochs": 80,
+    "patience": 15,
+    "lr": 0.001,
+    "optimizer": "Adam",
+    "l2_lambda": 0.0001,
+    "grad_clip": 5.0,
+    "loss": "cox_plus_ipcw_brier",
+    "geometry_rho": 0.0,
+    "regularization_schedule": "fixed",
+    "replay_block_size": 4
+  },
+  "data_provenance": {
+    "time_origin_verified": false,
+    "time_origin_evidence": "",
+    "anatomical_reference_verified": false,
+    "anatomical_reference_evidence": ""
+  },
+  "evaluation_grid": [
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36
+  ],
+  "horizon_selection": "prespecified; verify training/validation event support before finalizing",
+  "horizon_weights": null,
+  "clinical_anchor_alpha": 1.0,
+  "expected_cohort_size": 250
+}
