@@ -2,6 +2,8 @@
 
 **Anatomically conditioned surface diffusion for survival prediction.**
 
+**Manuscript status:** Submitted for peer review.
+
 ACSD-Surv combines tumor-surface geometry, volumetric images, and clinical covariates in a clinical-residual proportional-hazards model. It learns directional diffusion on triangular tumor surfaces and controls prediction sensitivity to contour perturbations through a fixed Sobolev metric.
 
 ## Overview
