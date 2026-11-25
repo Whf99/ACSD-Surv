@@ -55,6 +55,19 @@ The example runs the same preprocessing, Cox fitting, training, and evaluation c
 
 Patient data, split assignments, reference coordinates, and trained checkpoints are not included. Obtain the appropriate dataset permissions before preparing inputs.
 
+### Cohort access and participant selection
+
+The HECKTOR data used in this project were obtained by application to the official data provider. The 338 cases below are the cases obtained for this project, rather than the total size of all HECKTOR releases. This repository does not redistribute these data; access should be requested from the official provider under its applicable terms.
+
+| Cohort | Initially available to this project | Included in survival analysis | Observed events | Exclusions |
+|---|---:|---:|---|---|
+| Foshan | 277 | **251** | **47 PFS events** | **26 cases** were marked “Drop out” and lacked a usable observation time and an explicit event status; valid survival labels could not be constructed. |
+| HECKTOR | 338 | **300** | **64 RFS events** | First, **35 cases** without event status and follow-up time were excluded, leaving 303. Subsequently, **3 cases** had no primary-tumor label after alignment to CT space and were excluded, leaving 300. |
+
+Cases with insufficient follow-up information to construct a survival label were excluded rather than assigned an assumed censoring time or event status. For HECKTOR, the imaging-based exclusion was applied after the clinical-label exclusion.
+
+### Input organization
+
 ```text
 data/NPC/
 ├── images/
